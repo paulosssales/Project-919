@@ -91,7 +91,7 @@ export default function Dashboard({navigation}) {
   function randomNu() {
     
 
-    if ( image?.nome.toLowerCase() == input.toLowerCase() ) {
+    if ( image?.nome == input.toLowerCase() ) {
 
       i = (Math.random() * 8).toFixed(0);
 
