@@ -32,13 +32,13 @@ import {
 
 export default function Dashboard({navigation}) {
   const [image, setImage] = useState([]);
+  const [image1, setImage1] = useState([]);
+  const [image2, setImage2] = useState([]);
   const [input, setInput] = useState('');
   const [score, setScore] = useState(0);
   const [error, setError] = useState(false);
-
+  
   let i = 0;
-
-  const [nome, setNome] = useState([]);
 
   const nomeArray = [
     {id: 0, nome: 'Virus', src: logoVirus},
@@ -62,6 +62,24 @@ export default function Dashboard({navigation}) {
         src: nomeArray[i].src,
       });
     }
+
+    if (image1 == '' ) {
+      i = (Math.random() * 8).toFixed(0);
+      setImage1({
+        id: nomeArray[i].id,
+        nome: nomeArray[i].nome,
+        src: nomeArray[i].src,
+      });
+    }
+
+    if (image2 == '' ) {
+      i = (Math.random() * 8).toFixed(0);
+      setImage2({
+        id: nomeArray[i].id,
+        nome: nomeArray[i].nome,
+        src: nomeArray[i].src,
+      });
+    }
     
     setError(false);
   }, [ image ]);
@@ -73,12 +91,7 @@ export default function Dashboard({navigation}) {
   function randomNu() {
     
 
-    if ( image?.nome == input ) {
-      ToastAndroid.showWithGravity(
-        image?.nome + ' nome: ',
-        ToastAndroid.LONG,
-        ToastAndroid.TOP,
-      );
+    if ( image?.nome.toLowerCase() == input.toLowerCase() ) {
 
       i = (Math.random() * 8).toFixed(0);
 
@@ -89,6 +102,7 @@ export default function Dashboard({navigation}) {
       });
       setInput('');
       setScore(score+1);
+
     } 
 
     if(input != ''){
@@ -99,54 +113,40 @@ export default function Dashboard({navigation}) {
     
   }
 
+  function nomeText(im) {
+    ToastAndroid.showWithGravity(
+      ' nome: ' + im.nome,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
+  }
+
   function verificarSeGanhou() {
     randomNu();
   }
 
   return (
     <Container>
-      <StatusBar barStyle="light-content" backgroundColor="#2e86c1" />
+      <StatusBar barStyle="light-content" backgroundColor="#903EAD" />
+
       <ButtonExit title="Navigate to Main" onPress={navigateToMain}>
         <ButtonExitText> SAIR </ButtonExitText>
       </ButtonExit>
+
       <Grid>
         <LineGrid>
-          <Items onPress={verificarSeGanhou}>
-            <Image source={image == '' ? randomNu() : image?.src} />
+          <Items onPress={nomeText(image)}>
+            <Image source={image == '' ? randomNu() : image.src} />
+          </Items>
+          <Items onPress={nomeText(image1)}>
+            <Image source={image1 == '' ? randomNu() : image1.src} />
+          </Items>
+          <Items onPress={nomeText(image2)}>
+            <Image source={image2 == '' ? randomNu() : image2.src} />
           </Items>
         </LineGrid>
       </Grid>
 
-      {/* <Grid>
-        <LineGrid>
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoVirus6} />
-          </Items>
-
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoVirus7} />
-          </Items>
-
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoConnection8} />
-          </Items>
-        </LineGrid>
-      </Grid>
-      <Grid>
-        <LineGrid>
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoVirusTransmission4} />
-          </Items>
-
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoPipette5} />
-          </Items>
-
-          <Items onPress={verificarSeGanhou}>
-            <Image source={logoWorldwide9} />
-          </Items>
-        </LineGrid>
-      </Grid> */}
       <WordGrid>
         <LineGrid>
           <Input
@@ -155,14 +155,15 @@ export default function Dashboard({navigation}) {
             onChangeText={setInput}
             autoCapitalize="none"
             autoCorrect={false}
-            placeholder="Procurar repositório..."
+            placeholder="Clique numa imagem..."
           />
           <ButtonConfirm 
             disabled={input == '' ? true : false}  
             onPress={verificarSeGanhou} 
-          >
-            <ButtonExitText> Conf </ButtonExitText>
+            >
+            <ButtonExitText> Ok </ButtonExitText>
           </ButtonConfirm>
+
         </LineGrid>
 
         <LineGrid>
@@ -172,24 +173,7 @@ export default function Dashboard({navigation}) {
         </LineGrid>
         
       </WordGrid>
-      {/* <WordGrid>
-        <LineGrid>
-          <TextWord> 4 Bomba </TextWord>
 
-          <TextWord> 5 Mão </TextWord>
-
-          <TextWord> 6 Célula </TextWord>
-        </LineGrid>
-      </WordGrid>
-      <WordGrid>
-        <LineGrid>
-          <TextWord> 7 Pessoas </TextWord>
-
-          <TextWord> 8 Conta Gota </TextWord>
-
-          <TextWord> 9 Planeta </TextWord>
-        </LineGrid>
-      </WordGrid> */}
     </Container>
   );
 }

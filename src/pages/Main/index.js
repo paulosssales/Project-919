@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { StatusBar } from 'react-native';
+
 import logo from '~/assets/icons/logo/Loading_pc.png';
 
 import {
@@ -12,14 +14,16 @@ import {
 
 export default function Main({ navigation }) {
 
+  
   function navegateToDashboard() {
-    setTimeout(() => {
-      navigation.navigate('Dashboard');
-    }, 1000);
+    navigation.navigate('Dashboard');
   }
-
+  
   return (
     <Container>
+      
+      <StatusBar barStyle="light-content" backgroundColor="#903EAD" />
+
       <ImageMain>
         <ImageLogo source={logo} />
       </ImageMain>
@@ -27,6 +31,8 @@ export default function Main({ navigation }) {
       <ButtonEnter onPress={navegateToDashboard}>
         <TextButtonEnter> JOGAR </TextButtonEnter>
       </ButtonEnter>
+
+      
     </Container>
   );
 }

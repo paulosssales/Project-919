@@ -4,7 +4,7 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
     flex: 1;
-    backgroundColor: #FFF;
+    backgroundColor: #903EAD;
     align-items: center;
     justify-content: space-between;
     padding-top: ${getStatusBarHeight()}px;
@@ -28,7 +28,7 @@ export const TextButtonEnter = styled.Text`
     font-size: 52px;
     font-weight: bold;
     text-align: center;
-    color: #F4D03F;
+    color: #E2B920;
 `;
 
 export const ImageLogo = styled.Image`

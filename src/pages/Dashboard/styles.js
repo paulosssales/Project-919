@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background-color: #2e86c1;
+  background-color: #903EAD;
   justify-content: space-between;
 `;
 
@@ -42,8 +42,8 @@ export const ButtonExit = styled.TouchableOpacity`
   margin: 5px;
   height: 50px;
   width: 100px;
-  background-color: #AED6F1;
-  border: solid 1px #808b96;
+  background-color: #6B417A;
+  border: solid 0.3px #903EAD;
   border-radius: 10px;
 `;
 
@@ -52,7 +52,7 @@ export const ButtonConfirm = styled.TouchableOpacity`
   height: 50px;
   width: 100px;
   background-color: ${props => (props.disabled ? '#E74C3C' : '#58D68D')};
-  border: solid 1px #808b96;
+  border: solid 0.3px #AD8F4C;
   border-radius: 10px;
 `;
 
