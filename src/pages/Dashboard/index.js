@@ -46,7 +46,7 @@ export default function Dashboard({navigation}) {
     {id: 2, nome: 'Lupa', src: logoVirus3},
     {id: 3, nome: 'Bomba', src: logoVirus6},
     {id: 4, nome: 'Mão', src: logoVirus7},
-    {id: 5, nome: 'Célula', src: logoConnection8 },
+    {id: 5, nome: 'Celula', src: logoConnection8 },
     {id: 6, nome: 'Pessoas', src: logoVirusTransmission4},
     {id: 7, nome: 'Conta Gota', src: logoPipette5},
     {id: 8, nome: 'Planeta', src: logoWorldwide9},
@@ -58,7 +58,7 @@ export default function Dashboard({navigation}) {
       i = (Math.random() * 8).toFixed(0);
       setImage({
         id: nomeArray[i].id,
-        nome: nomeArray[i].nome,
+        nome: nomeArray[i].nome.toLowerCase(),
         src: nomeArray[i].src,
       });
     }
@@ -72,26 +72,37 @@ export default function Dashboard({navigation}) {
       });
     }
 
-    if (image2 == '' ) {
-      i = (Math.random() * 8).toFixed(0);
-      setImage2({
-        id: nomeArray[i].id,
-        nome: nomeArray[i].nome,
-        src: nomeArray[i].src,
-      });
-    }
+    image2Set(image2);
     
     setError(false);
-  }, [ image ]);
+  }, [ image, image1, image2 ]);
 
   function navigateToMain() {
     navigation.navigate('Main');
   }
 
+  function image2Set(im2) {
+
+    if (im2 == '' ) {
+      i = (Math.random() * 8).toFixed(0);
+      setImage2({
+        id: nomeArray[i].id,
+        nome: nomeArray[i].nome,
+        src: nomeArray[i].src,
+      });      
+      
+    }
+    
+    console.log("Image :" + JSON.stringify(image));
+    console.log("Image 1:" + JSON.stringify(image1));
+    console.log("Image 2:" + JSON.stringify(image2));
+
+  }
+
   function randomNu() {
     
 
-    if ( image?.nome == input.toLowerCase() ) {
+    if ( image?.nome == input ) {
 
       i = (Math.random() * 8).toFixed(0);
 
